@@ -1,0 +1,26 @@
+/*!
+ * CSS default style for jquery.recent-supporters.js
+ * https://github.com/moreonion/jquery-recent-supporters
+ *
+ * Copyright (c) 2013 more onion
+ * Released under the MIT license
+ * https://github.com/moreonion/jquery-recent-supporters/blob/master/LICENSE
+ */
+
+ul.recent-supporters  {
+  list-style: none;
+}
+
+li.supporter {
+  border: 1px solid #e3e3e3;
+  background-color: #f3f3f3;
+  padding: 0.25em 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.supporter .name {
+  font-weight: bold;
+}
+.supporter .time {
+  font-style: italic;
+}
