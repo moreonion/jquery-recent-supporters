@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Recent Supporters Demo</title>
+  <script src="http://code.jquery.com/jquery-1.5.2.min.js" type="text/javascript"></script>
+  <script src="http://github.com/moreonion/jquery-recent-supporters/raw/master/jquery.recent-supporters.js" type="text/javascript"></script>
+  <script src="http://timeago.yarp.com/jquery.timeago.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../jquery.recent-supporters.css">
+  <link rel="stylesheet" href="../flags.css">
+  <style type="text/css">
+    #recent-supporters-container {
+      max-width: 500px;
+    }
+  </style>
+  <script type="text/javascript">
+    (function ($) {
+      $(window).ready(function () {
+        $('#recent-supporters-container').recentSupporters({
+          maxSupportersVisible: 4
+        });
+     });
+    })(jQuery)
+  </script>
+</head>
+<body>
+  <h1>jQuery Recent Supporters Demo</h1>
+  <p>This demo shows:
+  <ul>
+    <li>6 Supporters in the Markup</li>
+    <li>no polling</li>
+    <li>jQuery Timeago integrated</li>
+  </ul>
+  </p>
+
+  <p>The plugin is called that way:
+  <pre>
+$(window).ready(function () {
+  $('#recent-supporters-container').recentSupporters({
+    maxSupportersVisible: 4
+  });
+});
+  </pre>
+  </p>
+
+  <div id="recent-supporters-container">
+    <h2>Recent supporters</h2>
+    <ul class="recent-supporters">
+      <li class="supporter">
+        <span class="name">Random Name</span>
+        <span class="time" data-timestamp="1384874190" title="2013-11-19T16:16:30+01:00">19.11.2013 16:16</span>
+        <span title="Ghana" class="country flag flag-gh">GH</span>
+      </li>
+      <li class="supporter">
+        <span class="name">Vorname Nachname</span>
+        <span class="time" data-timestamp="1384790470" title="2013-11-18T17:01:10+01:00">18.11.2013 17:01</span>
+        <span title="Australia" class="country flag flag-au">AU</span>
+      </li>
+      <li class="supporter">
+        <span class="name">Another R. Name</span>
+        <span class="time" data-timestamp="1384790394" title="2013-11-18T16:59:54+01:00">18.11.2013 16:59</span>
+        <span title="" class="country flag no-cc"></span>
+      </li>
+      <li class="supporter">
+        <span class="name">Nick Example</span>
+        <span class="time" data-timestamp="1384790272" title="2013-11-18T16:57:52+01:00">18.11.2013 16:57</span>
+        <span title="" class="country flag no-cc"></span>
+      </li>
+      <li class="supporter">
+        <span class="name">Alice Cypher</span>
+        <span class="time" data-timestamp="1384790075" title="2013-11-18T16:54:35+01:00">18.11.2013 16:54</span>
+        <span title="" class="country flag no-cc"></span>
+      </li>
+      <li class="supporter">
+        <span class="name">Bob's Secret</span>
+        <span class="time" data-timestamp="1384786670" title="2013-11-18T15:57:50+01:00">18.11.2013 15:57</span>
+        <span title="Austria" class="country flag flag-at">AT</span>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>
