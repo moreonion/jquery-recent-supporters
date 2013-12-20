@@ -2,6 +2,11 @@ jquery-recent-supporters
 ========================
 jQuery plugin to load and display a recent supporters listing on your website
 
+See it [in demo action](http://www.more-onion.com/sites/mo3/files/jquery-recent-supporters/demo/demo.html)!
+
+Developed by [More Onion](http://www.more-onion.com) as part of
+[Campaignion](http://www.campaignion.org).
+
 Dependecies
 -----------
 * jQuery 1.5+
