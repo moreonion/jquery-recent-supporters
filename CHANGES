@@ -1,5 +1,14 @@
+jquery.recent-supporters.js (0.2.0)
+
+  * update to changed campaignion data output
+  * output a formatted datetime string in the supporter element instead of
+    simple timestamp
+  * update README, copyright
+
+ -- Alex Berger <alex@more-onion.com> Fri, 11 Dec 2015 12:09:33 +0100
+
 jquery.recent-supporters.js (0.1.0)
 
   * initial release
 
- -- Alex Berger <alex@more-onion-com> Wed, 18 Dec 2013 16:48:47 +0100
+ -- Alex Berger <alex@more-onion.com> Wed, 18 Dec 2013 16:48:47 +0100

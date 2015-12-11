@@ -25,7 +25,7 @@ Provide a container in your markup, e.g. with the id
 Then call the plugin on the container (you only have to provide the polling url; all
 other configuration options have reasonably defaults):
 
-    $('#recent-supporter-container').recentSupporters({
+    $('#recent-supporters-container').recentSupporters({
       pollingURL: 'http://example.com/my/polling-url.json'
     });
 
@@ -80,10 +80,10 @@ Call the plugin with a property object to override the defaults.
   give up polling after this count of errors (no 404 or 403 as these will stop
   polling immediatly)
   (``15``)
-* ``nodeID``:
+* ``namespace``:
   the "namespace"/node id/action page id. there can be more than one action
   pages in the json output, but currently only one is displayed)
-  (``'0'``)
+  (``'supporters'``)
 
 jQuery Timeago integration
 -----------------------------
@@ -95,10 +95,10 @@ details about jQuery Timeago.
 
 JSON format
 -----------
-The plugin expects the data to be in a specific format (namespaced by an id,
-default id is ``0``):
+The plugin expects the data to be in a specific format (namespaced by an
+string, default is ``supporters``):
 
-    {"0":
+    {"supporters":
       [
         {"first_name":"First",
          "last_name":"Name",
@@ -130,4 +130,5 @@ TODO
 Changes
 -------
 
+* 0.2.0 update to new Campaignion format
 * 0.1.0 initial release
