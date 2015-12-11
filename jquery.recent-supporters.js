@@ -62,7 +62,7 @@
       maxSupportersInContainer: 15,
       showCountry: true,
       maxPollErrorCount: 15,
-      nodeID: '0'
+      namespace: 'supporters'
     }
     var settings = $.extend({}, defaults, options );
 
@@ -100,7 +100,7 @@
      * @param {Object} data The received data, namespaced by an integer
      */
     function updateRecentSupportersContainer (data) {
-      var supporters = data[parseInt(settings.nodeID, 10)];
+      var supporters = data[settings.namespace];
       var newSupporters = $.map(supporters, function (s, i) {
         if (parseInt(s.timestamp, 10) > lastSupporterTimestamp) {
           return s;
