@@ -210,8 +210,10 @@
     function supporterElement (supporter) {
       var $li = $('<li>');
       var timestamp = supporter.timestamp || Math.floor(new Date().getTime() / 1000);
+      var datetime = new Date(supporter.rfc8601);
+      var datetimeString = datetime.getDate()+"."+(datetime.getMonth()+1)+"."+datetime.getFullYear()+" "+datetime.getHours()+":"+datetime.getMinutes();
       var name = [supporter.first_name, supporter.last_name].join(" ")
-      $li.addClass('supporter').append('<span class="name">'+name+'</span>'+"\n"+'<span class="time" data-timestamp="'+timestamp+'" title="'+supporter.rfc8601+'">'+timestamp+'</span>');
+      $li.addClass('supporter').append('<span class="name">'+name+'</span>'+"\n"+'<span class="time" data-timestamp="'+timestamp+'" title="'+supporter.rfc8601+'">'+datetimeString+'</span>');
       if (settings.showCountry) {
         var countryCode = supporter.country ? supporter.country.toLowerCase() : "no-cc";
         var countryName = supporter.country_name;
