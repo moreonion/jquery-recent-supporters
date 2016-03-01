@@ -209,11 +209,26 @@
      */
     function supporterElement (supporter) {
       var $li = $('<li>');
-      var timestamp = supporter.timestamp || Math.floor(new Date().getTime() / 1000);
-      var datetime = new Date(supporter.rfc8601);
+      var datetime = new Date();
+      var rfc8601, timestamp;
+      if (typeof supporter.rfc8601 === 'undefined') {
+        if (typeof supporter.timestamp === 'undefined') {
+          timestamp = Math.floor(datetime.getTime / 1000)
+        } else {
+          timestamp = parseInt(supporter.timestamp, 10);
+          datetime = new Date(timestamp * 1000);
+        }
+        rfc8601 = datetime.toISOString();
+      } else {
+        rfc8601 = supporter.rfc8601;
+        datetime = new Date(rfc8601);
+        if (typeof supporter.timestamp === 'undefined') {
+          timestamp = Math.floor(datetime.getTime / 1000)
+        }
+      }
       var datetimeString = datetime.getDate()+"."+(datetime.getMonth()+1)+"."+datetime.getFullYear()+" "+datetime.getHours()+":"+datetime.getMinutes();
       var name = [supporter.first_name, supporter.last_name].join(" ")
-      $li.addClass('supporter').append('<span class="name">'+name+'</span>'+"\n"+'<span class="time" data-timestamp="'+timestamp+'" title="'+supporter.rfc8601+'">'+datetimeString+'</span>');
+      $li.addClass('supporter').append('<span class="name">'+name+'</span>'+"\n"+'<span class="time" data-timestamp="'+timestamp+'" title="'+rfc8601+'">'+datetimeString+'</span>');
       if (settings.showCountry) {
         var countryCode = supporter.country ? supporter.country.toLowerCase() : "no-cc";
         var countryName = supporter.country_name;
