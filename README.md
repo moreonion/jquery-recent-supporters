@@ -155,5 +155,9 @@ TODO
 Changes
 -------
 
+* 0.3.0
+  * possible to omit `timestamp` and `rfc8601` properties in supporter objects
+  * add `$.fn.recentSupporters.addNewSupporter`
+  * add `$.fn.recentSupporters.addNewSupporters`
 * 0.2.0 update to new Campaignion format
 * 0.1.0 initial release

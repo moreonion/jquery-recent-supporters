@@ -1,3 +1,11 @@
+jquery.recent-supporters.js (0.3.0)
+
+  * possible to omit `timestamp` and `rfc8601` properties in supporter objects
+  * add `$.fn.recentSupporters.addNewSupporter`
+  * add `$.fn.recentSupporters.addNewSupporters`
+
+ -- Alex Berger <alex@more-onion.com> Tue, 01 Mar 2016 13:26:43 +0100
+
 jquery.recent-supporters.js (0.2.0)
 
   * update to changed campaignion data output
