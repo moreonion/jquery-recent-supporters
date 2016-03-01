@@ -202,6 +202,21 @@
     }
 
     /**
+     * Adds a new supporters
+     *
+     * @param {Array} supporters The list of supporter objects to add.
+     */
+    function addNewSupporters (supporters) {
+      if ($.isArray(supporters)) {
+        $.each(supporters, function (index, supporter) {
+          addNewSupporter(supporter);
+        });
+      } else {
+        throw new Error('No Array given.');
+      }
+    }
+
+    /**
      * Generates a new supporter element from supporter object.
      *
      * @param {Object} supporter A single supporter object.
@@ -322,6 +337,7 @@
 
     // provide means to add supporters manually
     this.addNewSupporter = addNewSupporter;
+    this.addNewSupporters = addNewSupporters;
 
     return this;
   }
