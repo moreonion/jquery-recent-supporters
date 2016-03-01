@@ -85,6 +85,29 @@ Call the plugin with a property object to override the defaults.
   pages in the json output, but currently only one is displayed)
   (``'supporters'``)
 
+Manually add a supporter
+------------------------
+
+It's is possible to manually add supporters to the recent supporters instance.
+
+The supporter object needs to include at least one of `first_name` or
+`last_name` (or both). You can set either of `rfc8601` or `timestamp` (UNIX
+epoch in seconds) to set the time of the support (`rfc8601` is used for the
+time displayed). If you omit a time, the current time will be used.
+
+```javascript
+var now = new Date();
+var $recent = $('#recent-supporters-container').recentSupporters({
+  pollingURL: 'http://example.com/my/polling-url.json'
+});
+
+$recent.addNewSupporter({
+  rfc8601: now.toISOString(),
+  first_name: 'First',
+  last_name: 'Lastname'
+});
+```
+
 jQuery Timeago integration
 -----------------------------
 This plugin can use jQuery Timeago to display the difference between now and

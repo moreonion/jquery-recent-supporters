@@ -320,6 +320,9 @@
       }
     }
 
+    // provide means to add supporters manually
+    this.addNewSupporter = addNewSupporter;
+
     return this;
   }
 })(jQuery);
