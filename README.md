@@ -25,9 +25,11 @@ Provide a container in your markup, e.g. with the id
 Then call the plugin on the container (you only have to provide the polling url; all
 other configuration options have reasonably defaults):
 
-    $('#recent-supporters-container').recentSupporters({
-      pollingURL: 'http://example.com/my/polling-url.json'
-    });
+```javascript
+$('#recent-supporters-container').recentSupporters({
+  pollingURL: 'http://example.com/my/polling-url.json'
+});
+```
 
 
 Configuration
