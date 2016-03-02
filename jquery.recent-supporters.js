@@ -63,7 +63,8 @@
       maxSupportersInContainer: 15,
       showCountry: true,
       maxPollErrorCount: 15,
-      namespace: 'supporters'
+      namespace: 'supporters',
+      compareFn: compareSupporterFn
     }
     var settings = $.extend({}, defaults, options );
 
@@ -73,12 +74,110 @@
     var lastSupporterTimestamp = getMostRecentTimestamp();
     var pollErrorCount = 0;
 
+    var supporterStore = [];
+
     // check if easing is available
     // if not set it to 'linear'
     if (!$.easing || !$.easing[settings.cycleEasing]) {
       settings.cycleEasing = 'linear';
     }
 
+    /**
+     * Helper function for uniqueifying an array
+     *
+     * @see http://stackoverflow.com/questions/2218999/remove-duplicates-from-an-array-of-objects-in-javascript
+     */
+    function unique(a, compareFunc){
+      a.sort(compareFunc);
+      for(var i = 1; i < a.length; ){
+        if (compareFunc(a[i-1], a[i]) === 0) {
+          a.splice(i, 1);
+        } else {
+          i++;
+        }
+      }
+      a.reverse();
+      return a;
+    }
+
+    /**
+     * The count of supporters in the storage.
+     *
+     * NB: This can differ from the supporters actually displayed in the DOM,
+     * as the binding is not strict.
+     */
+    function supporterCount() {
+      return supporterStore.length;
+    }
+
+    /**
+     * Add supporter items to the store.
+     *
+     * When you add supporters to the store, the store ensures that they are unique.
+     * Set the comparing function in the settings.
+     */
+    function addSupportersToStore(supporters) {
+      if ($.isArray(supporters)) {
+        var oldCount = supporterStore.length;
+        supporterStore = $.merge(supporterStore, supporters);
+        supporterStore = unique(supporterStore, settings.compareFn);
+        // if new supporters have been added emit event
+        if (supporterStore.length > oldCount) {
+          $container.trigger('addsupporters.recentsupporters');
+        }
+      } else {
+        throw new Error('No Array given.');
+      }
+    };
+
+    /**
+     * Update the displayed supporters with information from the store.
+     *
+     */
+    function updateFromStore() {
+      updateRecentSupportersContainer(supporterStore);
+    }
+
+    /**
+     * The default comparing function.
+     *
+     * This assumes some properties to be present: timestamp, last_name, and first_name.
+     *
+     * NB: If all of these are missing, all supporters are considered equal and
+     * therefore only one will get stored in the store! So ensure that any of
+     * the fields are set or provide a custom compareFn via the settings.
+     */
+    function compareSupporterFn(a, b) {
+      if (a.timestamp && b.timestamp) {
+        if (a.timestamp < b.timestamp) {
+          return -1;
+        }
+        if (a.timestamp > b.timestamp) {
+          return 1;
+        }
+      }
+      // from here timestamps are the same
+      if (a.last_name && b.last_name) {
+        if (a.last_name < b.last_name) {
+          return -1;
+        }
+        if (a.last_name > b.last_name) {
+          return 1;
+        }
+      }
+      // from here surnames are the same
+      if (a.first_name && b.first_name) {
+        if (a.first_name < b.first_name) {
+          return -1;
+        }
+        if (a.first_name > b.first_name) {
+          return 1;
+        }
+      }
+      // now no greater or less could be decided
+      // they must be the same
+      return 0;
+    }
 
     /**
      * sets the next poll via a timeout
@@ -342,6 +441,9 @@
     // provide means to add supporters manually
     this.addNewSupporter = addNewSupporter;
     this.addNewSupporters = addNewSupporters;
+    this.addSupportersToStore = addSupportersToStore;
+    this.updateFromStore = updateFromStore;
+    this.supporterCount = supporterCount;
 
     return this;
   }
