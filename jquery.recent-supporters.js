@@ -244,7 +244,8 @@
           timestamp = Math.floor(datetime.getTime / 1000)
         }
       }
-      var datetimeString = datetime.getDate()+"."+(datetime.getMonth()+1)+"."+datetime.getFullYear()+" "+datetime.getHours()+":"+datetime.getMinutes();
+      var minString = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+      var datetimeString = datetime.getDate()+"."+(datetime.getMonth()+1)+"."+datetime.getFullYear()+" "+datetime.getHours()+":"+minString;
       var name = [supporter.first_name, supporter.last_name].join(" ")
       $li.addClass('supporter').append('<span class="name">'+name+'</span>'+"\n"+'<span class="time" data-timestamp="'+timestamp+'" title="'+rfc8601+'">'+datetimeString+'</span>');
       if (settings.showCountry) {
