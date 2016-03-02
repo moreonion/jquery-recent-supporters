@@ -25,7 +25,8 @@
         url: settings.pollingURL,
         success: function(data) {
           // on success: update the container
-          updateRecentSupportersContainer(data);
+          var supporters = data[settings.namespace];
+          updateRecentSupportersContainer(supporters);
           setNextPoll();
         },
         error: function(data) {
@@ -97,10 +98,12 @@
      * - creates ul if needed
      * - calls function to add supporters
      *
-     * @param {Object} data The received data, namespaced by an integer
+     * @param {Object} supporters The supporters
      */
-    function updateRecentSupportersContainer (data) {
-      var supporters = data[settings.namespace];
+    function updateRecentSupportersContainer (supporters) {
+      if (!$.isArray(supporters)) {
+        return;
+      }
       var newSupporters = $.map(supporters, function (s, i) {
         if (parseInt(s.timestamp, 10) > lastSupporterTimestamp) {
           return s;
