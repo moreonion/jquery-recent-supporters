@@ -86,6 +86,15 @@ Call the plugin with a property object to override the defaults.
   the "namespace"/node id/action page id. there can be more than one action
   pages in the json output, but currently only one is displayed)
   (``'supporters'``)
+* ``cssPrefix``:
+  will get prepended to every class Recent Supporters uses
+  (``'supporters-'``)
+* ``compareFn``:
+  the function which defines whether two supporter objects are considered the
+  same. This is used as a ``sort`` function, so it has to adher to it's
+  interface: return ``0`` for less than, ``-1`` for smaller, and ``1`` for
+  greater than.
+  (``compareSupporterFn``)
 
 Manually add a supporter
 ------------------------
