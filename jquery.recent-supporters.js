@@ -83,12 +83,13 @@
       showCountry: true,
       maxPollErrorCount: 15,
       namespace: 'supporters',
+      cssPrefix: 'supporters-',
       compareFn: compareSupporterFn
     }
     var settings = $.extend({}, defaults, options );
 
     var nextPoll = settings.pollingInterval;
-    var $ul = $('ul.recent-supporters');
+    var $ul = $('ul.'+settings.cssPrefix+'recent-supporters');
     var $container = this;
     var lastSupporterTimestamp = getMostRecentTimestamp();
     var pollErrorCount = 0;
@@ -234,12 +235,12 @@
         // subsitute the placeholder if available
         var $noActivityYet = $('.no-activity-yet', $container);
         if ($noActivityYet.length > 0) {
-          $noActivityYet.after('<ul class="recent-supporters">');
+          $noActivityYet.after('<ul class="'+settings.cssPrefix+'recent-supporters">');
           $noActivityYet.hide();
-          $ul = $('.recent-supporters', $container);
+          $ul = $('.'+settings.cssPrefix+'recent-supporters', $container);
         } else {
-          $container.append('<ul class="recent-supporters">');
-          $ul = $('.recent-supporters', $container);
+          $container.append('<ul class="'+settings.cssPrefix+'recent-supporters">');
+          $ul = $('.'+settings.cssPrefix+'recent-supporters', $container);
         }
       }
 
@@ -269,7 +270,7 @@
       var li = $('li:visible', $ul);
       var $newElement;
       var lastTimestamp = getMostRecentTimestamp();
-      var liCount = $('li.supporter', $ul).length;
+      var liCount = $('li.'+settings.cssPrefix+'supporter', $ul).length;
       // get the most recent supporter element
       // only the first one, if timestamp matches more than one supporter
       var $mostRecentElement = $('li span[data-timestamp="'+lastTimestamp+'"]', $ul).first().parent();
@@ -285,7 +286,7 @@
         setVisibleSupporters();
       }
       if ($.fn.timeago) {
-        $('.time', $ul).timeago('updateFromDOM');
+        $('.'+settings.cssPrefix+'time', $ul).timeago('updateFromDOM');
       }
 
       // remove supporters from DOM when maxSupporterInContainer treshold is hit
@@ -365,11 +366,11 @@
       var minString = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
       var datetimeString = datetime.getDate()+"."+(datetime.getMonth()+1)+"."+datetime.getFullYear()+" "+datetime.getHours()+":"+minString;
       var name = [supporter.first_name, supporter.last_name].join(" ")
-      $li.addClass('supporter').append('<span class="name">'+name+'</span>'+"\n"+'<span class="time" data-timestamp="'+timestamp+'" title="'+rfc8601+'">'+datetimeString+'</span>');
+      $li.addClass(settings.cssPrefix+'supporter').append('<span class="'+settings.cssPrefix+'name">'+name+'</span>'+"\n"+'<span class="'+settings.cssPrefix+'time" data-timestamp="'+timestamp+'" title="'+rfc8601+'">'+datetimeString+'</span>');
       if (settings.showCountry) {
         var countryCode = supporter.country ? supporter.country.toLowerCase() : "no-cc";
         var countryName = supporter.country_name;
-        $li.append(' <span title="'+countryName+'" class="country flag flag-'+countryCode+'">'+supporter.country+'</span>');
+        $li.append(' <span title="'+countryName+'" class="'+settings.cssPrefix+'country '+settings.cssPrefix+'flag '+settings.cssPrefix+'flag-'+countryCode+'">'+supporter.country+'</span>');
       }
       return $li;
     }
@@ -381,7 +382,7 @@
      * @return {Boolean} Returns true if empty, false otherwise
      */
     function containerEmpty () {
-      return $('ul.recent-supporters', $container).length > 0 ? false : true;
+      return $('ul.'+settings.cssPrefix+'recent-supporters', $container).length > 0 ? false : true;
     }
 
     /**
@@ -390,7 +391,7 @@
      * @return {Integer} Returns the most recent timestamp
      */
     function getMostRecentTimestamp () {
-      var li = $('li .time', $ul);
+      var li = $('li .'+settings.cssPrefix+'time', $ul);
       var timestamps = li.map(function (i, el) {
         return parseInt(el.getAttribute('data-timestamp'), 10);
       });
@@ -403,7 +404,7 @@
      * @return {Integer} Returns the least recent timestamp
      */
     function getLeastRecentTimestamp () {
-      var li = $('li .time', $ul);
+      var li = $('li .'+settings.cssPrefix+'time', $ul);
       var timestamps = li.map(function (i, el) {
         return parseInt(el.getAttribute('data-timestamp'), 10);
       });
@@ -415,14 +416,14 @@
      * Show only the maxSupportersVisible number of supporters.
      */
     function setVisibleSupporters() {
-      $('li.supporter', $ul).show().slice(settings.maxSupportersVisible).hide();
+      $('li.'+settings.cssPrefix+'supporter', $ul).show().slice(settings.maxSupportersVisible).hide();
     }
 
     /**
      * Cycles to the next supporter. Cycles only 1 by 1 supporter.
      */
     function cycleSupporters() {
-      var supporterElements = $('li.supporter', $ul);
+      var supporterElements = $('li.'+settings.cssPrefix+'supporter', $ul);
       // move last element to top in list and show hide
       // if there is at least one supporter more loaded then shown
       if (supporterElements.length > settings.maxSupportersVisible) {
@@ -449,10 +450,10 @@
 
       // initialize timeago (if available)
       if ($.fn.timeago) {
-        $('.time', $ul).timeago('updateFromDOM');
+        $('.'+settings.cssPrefix+'time', $ul).timeago('updateFromDOM');
         // set update interval
         setInterval(function() {
-          $('.time', $ul).timeago('updateFromDOM');
+          $('.'+settings.cssPrefix+'time', $ul).timeago('updateFromDOM');
         }, settings.updateTimeagoInterval);
       }
     }

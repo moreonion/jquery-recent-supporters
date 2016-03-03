@@ -7,20 +7,20 @@
  * https://github.com/moreonion/jquery-recent-supporters/blob/master/LICENSE
  */
 
-ul.recent-supporters  {
+ul.supporters-recent-supporters  {
   list-style: none;
 }
 
-li.supporter {
+li.supporters-supporter {
   border: 1px solid #e3e3e3;
   background-color: #f3f3f3;
   padding: 0.25em 0.5em;
   margin-bottom: 0.5em;
 }
 
-.supporter .name {
+.supporters-supporter .supporters-name {
   font-weight: bold;
 }
-.supporter .time {
+.supporters-supporter .supporters-time {
   font-style: italic;
 }
