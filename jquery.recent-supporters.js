@@ -371,7 +371,7 @@
         var countryCode = supporter.country ? supporter.country.toLowerCase() : "no-cc";
         var countryName = supporter.country_name;
         var countryStr = typeof supporter.country !== 'undefined' ? supporter.country : '';
-        $li.append(' <span title="'+countryName+'" class="'+settings.cssPrefix+'country '+settings.cssPrefix+'flag '+settings.cssPrefix+'flag-'+countryCode+'">'+countryStr+'</span>');
+        $li.prepend('<span title="'+countryName+'" class="'+settings.cssPrefix+'country '+settings.cssPrefix+'flag '+settings.cssPrefix+'flag-'+countryCode+'">'+countryStr+'</span> ');
       }
       return $li;
     }
