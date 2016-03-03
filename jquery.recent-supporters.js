@@ -2,7 +2,7 @@
  * jQuery plugin to load and display a recent supporters listing on your website
  * https://github.com/moreonion/jquery-recent-supporters
  *
- * Copyright (c) 2013-2015 more onion
+ * Copyright (c) 2013-2016 more onion
  * Released under the MIT license
  * https://github.com/moreonion/jquery-recent-supporters/blob/master/LICENSE
  */
