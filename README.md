@@ -164,6 +164,14 @@ TODO
 Changes
 -------
 
+* 0.4.0
+  * provide an uniquifying storage from which the recent supporters can be
+    updated from
+  * use an UMD header
+  * move country element to beginning of supporter element
+  * prefix css classes
+  * fixes
+  * relicense as GPLv3
 * 0.3.0
   * possible to omit `timestamp` and `rfc8601` properties in supporter objects
   * add `$.fn.recentSupporters.addNewSupporter`
