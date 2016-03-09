@@ -3,7 +3,7 @@
  * https://github.com/moreonion/jquery-recent-supporters
  *
  * Copyright (c) 2013-2016 more onion
- * Released under the MIT license
+ * Released under the GPLv3 license
  * https://github.com/moreonion/jquery-recent-supporters/blob/master/LICENSE
  */
 
